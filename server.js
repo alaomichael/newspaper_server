@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const pool = require('./db');
 const app = express();
-const port = process.env.PORT// || 3000;
+const port = process.env.PORT || 3000;
 
 app.use(express.json());
 
@@ -47,26 +47,6 @@ app.post('/api/articles', async (req, res) => {
         res.status(500).send('Server error');
     }
 });
-
-// // PUT update an existing article
-// app.put('/api/articles/:id', async (req, res) => {
-//     const id = req.params.id;
-//     const { title, content, author } = req.body;
-//     try {
-//         const result = await pool.query(
-//             'UPDATE articles SET title = $1, content = $2, author = $3 WHERE id = $4 RETURNING *',
-//             [title, content, author, id]
-//         );
-//         if (result.rows.length > 0) {
-//             res.json(result.rows[0]);
-//         } else {
-//             res.status(404).send('Article not found');
-//         }
-//     } catch (err) {
-//         console.error(err.message);
-//         res.status(500).send('Server error');
-//     }
-// });
 
 // PUT update an existing article
 app.put('/api/articles/:id', async (req, res) => {
@@ -122,8 +102,6 @@ app.put('/api/articles/:id', async (req, res) => {
         res.status(500).send('Server error');
     }
 });
-
-
 
 
 // DELETE an article
